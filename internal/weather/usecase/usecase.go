@@ -1,13 +1,15 @@
 package usecase
 
-import "github.com/amagkn/another-weather/internal/weather/entity"
+import (
+	"github.com/amagkn/another-weather/internal/weather/dto"
+)
 
 type WeatherAPI interface {
-	GetWeatherByCity(lot, lat string) (entity.Weather, error)
+	GetWeatherByCity(lot, lat string) (dto.OpenmeteoWeather, error)
 }
 
 type CityAPI interface {
-	GetCityCoordinates(cityName string) ([]entity.CityWithCoordinates, error)
+	GetCityCoordinates(cityName string) ([]dto.NominatimCity, error)
 }
 
 type UseCase struct {

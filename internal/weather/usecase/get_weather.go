@@ -11,14 +11,20 @@ func (u *UseCase) GetWeather(city string) (dto.GetWeatherOutput, error) {
 
 	cities, err := u.cityAPI.GetCityCoordinates(city)
 	if err != nil {
-		return output, common_error.WithPath("u.cityAPI.GetCityCoordinates", err)
+		return output, common_error.WithPath("u.cityAPI.NominatimCity", err)
 	}
 
 	if len(cities) == 0 {
 		return output, entity.ErrCityNotFound
 	}
 
-	//_, _ := u.weatherAPI.GetWeatherByCity(cityWithCoordinates.Lot, cityWithCoordinates.Lat)
+	weather, err := u.weatherAPI.GetWeatherByCity(cities[0].Lot, cities[0].Lat)
+	if err != nil {
+		return output, common_error.WithPath("u.weatherAPI.GetWeatherByCity", err)
+	}
 
-	return dto.GetWeatherOutput{}, nil
+	output.City = city
+	output.Temperature = weather.CurrentWeather.Temperature
+
+	return output, nil
 }

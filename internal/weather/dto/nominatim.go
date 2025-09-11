@@ -1,6 +1,6 @@
 package dto
 
-type GetCityCoordinates struct {
+type NominatimCity struct {
 	Lot  string `json:"lon"`
 	Lat  string `json:"lat"`
 	Name string `json:"name"`

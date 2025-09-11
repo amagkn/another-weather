@@ -2,7 +2,6 @@ package ver1
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 
 	"github.com/amagkn/another-weather/internal/weather/entity"
@@ -15,7 +14,7 @@ import (
 func (h *Handlers) GetWeather(w http.ResponseWriter, r *http.Request) {
 	city := chi.URLParam(r, "city")
 
-	_, err := h.uc.GetWeather(city)
+	weather, err := h.uc.GetWeather(city)
 	if err != nil {
 		logger.Error(err, "h.uc.GetWeather")
 
@@ -28,5 +27,5 @@ func (h *Handlers) GetWeather(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response.Success(w, http.StatusOK, fmt.Sprintf("%s cool!", city))
+	response.Success(w, http.StatusOK, weather)
 }
