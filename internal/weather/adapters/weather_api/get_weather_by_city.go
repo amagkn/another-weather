@@ -10,8 +10,8 @@ import (
 	"github.com/amagkn/another-weather/pkg/common_error"
 )
 
-func (w *WeatherApi) GetWeatherByCity(lot, lat string) (dto.OpenmeteoWeather, error) {
-	var weather dto.OpenmeteoWeather
+func (w *WeatherApi) GetWeatherByCity(lot, lat string) (dto.OpenmeteoWeatherOutput, error) {
+	var weather dto.OpenmeteoWeatherOutput
 
 	openmeteoURL := fmt.Sprintf("https://api.open-meteo.com/v1/forecast?latitude=%s&longitude=%s&current_weather=true", lat, lot)
 	res, err := http.Get(openmeteoURL)

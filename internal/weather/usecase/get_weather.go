@@ -11,7 +11,7 @@ func (u *UseCase) GetWeather(city string) (dto.GetWeatherOutput, error) {
 
 	cities, err := u.cityAPI.GetCityCoordinates(city)
 	if err != nil {
-		return output, common_error.WithPath("u.cityAPI.NominatimCity", err)
+		return output, common_error.WithPath("u.cityAPI.GetCityCoordinates", err)
 	}
 
 	if len(cities) == 0 {

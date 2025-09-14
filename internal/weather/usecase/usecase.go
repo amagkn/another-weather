@@ -5,11 +5,11 @@ import (
 )
 
 type WeatherAPI interface {
-	GetWeatherByCity(lot, lat string) (dto.OpenmeteoWeather, error)
+	GetWeatherByCity(lot, lat string) (dto.OpenmeteoWeatherOutput, error)
 }
 
 type CityAPI interface {
-	GetCityCoordinates(cityName string) ([]dto.NominatimCity, error)
+	GetCityCoordinates(cityName string) ([]dto.NominatimCityOutput, error)
 }
 
 type UseCase struct {

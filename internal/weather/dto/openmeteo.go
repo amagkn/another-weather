@@ -1,6 +1,6 @@
 package dto
 
-type OpenmeteoWeather struct {
+type OpenmeteoWeatherOutput struct {
 	CurrentWeather struct {
 		Time          string  `json:"time"`
 		Interval      int     `json:"interval"`
